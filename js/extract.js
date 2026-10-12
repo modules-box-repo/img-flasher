@@ -72,7 +72,7 @@ function initExtract() {
       const b = state.blocks.find(x => x.name === n);
       if (!b) { done++; setProgress("exBar", "exPct", done, total); continue; }
       const dest = folder ? `${base}/${b.partname}.img` : out;
-      $("#exMessage").innerHTML = `<div class="notice">جاري استخراج ${b.partname} (${done + 1}/${total})…</div>`;
+      $("#exMessage").innerHTML = `<div class="notice">Extracting ${b.partname} (${done + 1}/${total})…</div>`;
       try {
         await api("/api/extract", { method: "POST", body: JSON.stringify({ partition: b.name, output: dest }) });
       } catch (e) {
@@ -86,11 +86,11 @@ function initExtract() {
     $("#exBtn").disabled = state.selected.size === 0;
 
     if (errors.length === 0) {
-      exMsg(`تم الاستخراج بنجاح! ✓ (${total === 1 ? 'تم حفظ الملف' : 'تم حفظ ' + total + ' ملفات'})`, false);
+      exMsg(`Extraction completed successfully (${total} ${total === 1 ? "partition" : "partitions"}).`, false);
     } else if (errors.length < total) {
-      exMsg(`اكتمل الاستخراج مع وجود أخطاء:\n${errors.join("\n")}`, true);
+      exMsg(`Extraction completed with errors:\n${errors.join("\n")}`, true);
     } else {
-      exMsg(`فشل الاستخراج:\n${errors.join("\n")}`, true);
+      exMsg(`Extraction failed:\n${errors.join("\n")}`, true);
     }
   };
 }

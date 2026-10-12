@@ -78,7 +78,7 @@ function openWarn(names) {
   const btn = $("#warnAgree");
   let s = 10;
   btn.disabled = true;
-  btn.textContent = `موافق (${s})`;
+  btn.textContent = `Confirm (${s})`;
   btn.onclick = () => { closeWarn(); runFlash(names); };
   $("#warnModal").classList.remove("hidden");
   lockScroll();
@@ -89,9 +89,9 @@ function openWarn(names) {
       clearInterval(warnTimer);
       warnTimer = null;
       btn.disabled = false;
-      btn.textContent = "موافق";
+      btn.textContent = "Confirm";
     } else {
-      btn.textContent = `موافق (${s})`;
+      btn.textContent = `Confirm (${s})`;
     }
   }, 1000);
 }
@@ -112,7 +112,7 @@ async function runFlash(names) {
   const errors = [];
   setProgress("flBar", "flPct", 0, total);
   for (const n of names) {
-    $("#flMessage").innerHTML = `<div class="notice">جاري تفليش ${n} (${done + 1}/${total})…</div>`;
+    $("#flMessage").innerHTML = `<div class="notice">Flashing ${n} (${done + 1}/${total})…</div>`;
     try {
       await api("/api/flash", { method: "POST", body: JSON.stringify({ input: state.flashImgs[n], partition: n }) });
     } catch (e) {
@@ -126,11 +126,11 @@ async function runFlash(names) {
   $("#flBtn").disabled = Object.keys(state.flashImgs).length === 0;
 
   if (errors.length === 0) {
-    flMsg(`تم التفليش بنجاح! ✓ (${total === 1 ? 'تم تفليش القسم' : 'تم تفليش ' + total + ' أقسام'})`, false);
+    flMsg(`Flashing completed successfully (${total} ${total === 1 ? "partition" : "partitions"}).`, false);
   } else if (errors.length < total) {
-    flMsg(`اكتمل التفليش مع وجود أخطاء:\n${errors.join("\n")}`, true);
+    flMsg(`Flashing completed with errors:\n${errors.join("\n")}`, true);
   } else {
-    flMsg(`فشل التفليش:\n${errors.join("\n")}`, true);
+    flMsg(`Flashing failed:\n${errors.join("\n")}`, true);
   }
 }
 
