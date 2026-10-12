@@ -14,10 +14,11 @@ Revived from the original [YasserNull/img-flasher](https://github.com/YasserNull
 
 ## Screenshots
 
+![](docs/images/screenshot0.jpg)
+
 <p align="center">
-  <img src="https://github.com/modules-box-repo/img-flasher/blob/main/docs/images/screenshot0.jpg" width="30%"/>
-  <img src="https://github.com/modules-box-repo/img-flasher/blob/main/docs/images/screenshot1.jpg" width="30%"/>
-  <img src="https://github.com/modules-box-repo/img-flasher/blob/main/docs/images/screenshot2.jpg" width="30%"/>
+  <img src="https://github.com/modules-box-repo/img-flasher/blob/main/docs/images/screenshot1.jpg" width="45%"/>
+  <img src="https://github.com/modules-box-repo/img-flasher/blob/main/docs/images/screenshot2.jpg" width="45%"/>
 </p>
 
 ## Warning
