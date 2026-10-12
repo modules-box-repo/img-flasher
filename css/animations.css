@@ -8,7 +8,7 @@
 @keyframes rowIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@keyframes glowPulse { 0%, 100% { box-shadow: 0 6px 14px rgba(255, 0, 0, .25); } 50% { box-shadow: 0 6px 22px rgba(255, 0, 0, .55); } }
+@keyframes glowPulse { 0%, 100% { box-shadow: 0 6px 14px var(--accent-glow, rgba(53, 200, 137, .25)); } 50% { box-shadow: 0 6px 22px var(--accent-glow-strong, rgba(53, 200, 137, .55)); } }
 @keyframes gradientShift { to { background-position: 200% center; } }
 @keyframes pulseSoft { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
 @keyframes barStripes { to { background-position: 16px 0; } }

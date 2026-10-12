@@ -43,7 +43,7 @@
   outline: none;
   transition: border-color .2s ease, box-shadow .2s ease;
 }
-.dlg-section input:not([type=checkbox]):focus { border-color: var(--red); box-shadow: 0 0 0 3px var(--red-soft); }
+.dlg-section input:not([type=checkbox]):focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 .dlg-section select {
   display: block;
   width: 100%;
@@ -57,7 +57,7 @@
   font-weight: 700;
   transition: border-color .2s ease;
 }
-.dlg-section select:focus { border-color: var(--red); }
+.dlg-section select:focus { border-color: var(--accent); }
 .dlg-section .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
 .chip {
   flex-shrink: 0;
@@ -72,7 +72,7 @@
 }
 .chip:hover { transform: translateY(-1px); }
 .chip:active { transform: scale(.93); }
-.chip.active { border-color: var(--red); background: var(--red-soft); color: var(--red); animation: popIn .2s ease; }
+.chip.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); animation: popIn .2s ease; }
 .dlg-section .mute-check:last-child { margin-bottom: 0; }
 .dlg-actions { display: flex; gap: 8px; margin-top: 16px; }
 .dlg-actions .refresh { flex: 1; height: 46px; }
@@ -81,7 +81,7 @@
   height: 46px;
   border: 0;
   border-radius: 12px;
-  background: var(--red);
+  background: var(--accent);
   color: #fff;
   font-weight: 800;
   font-size: 13px;
@@ -90,7 +90,7 @@
 .dlg-done:hover:not(:disabled) { filter: brightness(1.08); }
 .dlg-done:active:not(:disabled) { transform: scale(.97); }
 .dlg-done:disabled { opacity: .5; cursor: not-allowed; animation: pulseSoft 1s ease-in-out infinite; }
-#imgError { color: var(--red); font-size: 11px; font-weight: 700; margin-top: 8px; animation: slideDown .2s ease both; }
+#imgError { color: var(--danger); font-size: 11px; font-weight: 700; margin-top: 8px; animation: slideDown .2s ease both; }
 .kv-list { margin: 0; display: flex; flex-direction: column; }
 .kv-list > div {
   display: grid;
@@ -108,8 +108,8 @@
 .warn-box {
   padding: 12px;
   border-radius: 12px;
-  background: rgba(255, 0, 0, .1);
-  border: 1px solid var(--red);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger);
   font-size: 12px;
   line-height: 1.9;
   animation: pulseSoft 2s ease-in-out infinite;

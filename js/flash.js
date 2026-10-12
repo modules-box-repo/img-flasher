@@ -43,7 +43,7 @@ function renderFlash() {
 }
 
 function flMsg(text, error = false) {
-  $("#flMessage").innerHTML = `<div class="notice">${error ? "ERROR / " : "OK / "}${text}</div>`;
+  $("#flMessage").innerHTML = `<div class="notice ${error ? "error" : "success"}">${error ? "ERROR / " : "OK / "}${text}</div>`;
 }
 
 let imgTarget = null;
@@ -105,19 +105,33 @@ function closeWarn() {
 
 async function runFlash(names) {
   $("#flBtn").disabled = true;
+  $("#flMessage").innerHTML = "";
   showProgress("flProg", true);
   let done = 0;
+  const total = names.length;
+  const errors = [];
+  setProgress("flBar", "flPct", 0, total);
   for (const n of names) {
+    $("#flMessage").innerHTML = `<div class="notice">جاري تفليش ${n} (${done + 1}/${total})…</div>`;
     try {
       await api("/api/flash", { method: "POST", body: JSON.stringify({ input: state.flashImgs[n], partition: n }) });
-      flMsg(`${n} flashed from ${state.flashImgs[n]}`);
     } catch (e) {
-      flMsg(`${n}: ${e.message}`, true);
+      errors.push(`${n}: ${e.message}`);
     }
     done++;
-    setProgress("flBar", "flPct", done, names.length);
+    setProgress("flBar", "flPct", done, total);
   }
-  $("#flBtn").disabled = false;
+  await new Promise(r => setTimeout(r, 400));
+  showProgress("flProg", false);
+  $("#flBtn").disabled = Object.keys(state.flashImgs).length === 0;
+
+  if (errors.length === 0) {
+    flMsg(`تم التفليش بنجاح! ✓ (${total === 1 ? 'تم تفليش القسم' : 'تم تفليش ' + total + ' أقسام'})`, false);
+  } else if (errors.length < total) {
+    flMsg(`اكتمل التفليش مع وجود أخطاء:\n${errors.join("\n")}`, true);
+  } else {
+    flMsg(`فشل التفليش:\n${errors.join("\n")}`, true);
+  }
 }
 
 function initFlash() {

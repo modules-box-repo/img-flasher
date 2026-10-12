@@ -3,7 +3,7 @@
 .blocks-title { display: flex; align-items: center; gap: 10px; }
 .blocks-title h2 { font-size: 16px; font-weight: 800; margin: 0; }
 #refreshBtn:disabled { animation: spin 1s linear infinite; }
-#filterBtn.filtered { border-color: var(--red); background: var(--red); color: #fff; animation: popIn .25s ease; }
+#filterBtn.filtered { border-color: var(--accent); background: var(--accent); color: #fff; animation: popIn .25s ease; }
 .table-wrap { position: relative; overflow-x: auto; direction: ltr; border: 1px solid var(--line); border-radius: 12px; }
 .blk-table { width: 100%; border-collapse: collapse; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 11px; direction: ltr; }
 .blk-table thead th {
@@ -15,7 +15,7 @@
   font-size: 10px;
   font-weight: 800;
   letter-spacing: .06em;
-  color: var(--red);
+  color: var(--accent);
   background: var(--surface2);
   border-bottom: 1px solid var(--line);
 }
@@ -23,7 +23,7 @@
 .blk-table tbody tr:last-child td { border-bottom: 0; }
 .blk-table tbody tr { animation: rowIn .25s ease both; }
 .blk-table tbody tr:not(.group-row):not(.empty-format):hover { background: var(--surface2); }
-.blk-table tbody tr:not(.group-row):not(.empty-format):hover td:first-child { box-shadow: inset 3px 0 0 var(--red); }
+.blk-table tbody tr:not(.group-row):not(.empty-format):hover td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 .blk-table tbody tr:nth-child(even):not(.group-row) { background: rgba(128, 128, 128, .05); }
 .empty-format td { padding: 24px; text-align: center; color: var(--muted); font-size: 11px; }
 td.c-name { font-weight: 800; }
@@ -35,9 +35,9 @@ td.c-name { font-weight: 800; }
   cursor: pointer;
   transition: color .15s ease;
 }
-.blk-link:hover { color: var(--red); }
-td.c-type-disk { color: var(--green); font-weight: 700; }
-td.c-type-partition { color: var(--red); font-weight: 700; }
+.blk-link:hover { color: var(--accent); }
+td.c-type-disk { color: #38bdf8; font-weight: 700; }
+td.c-type-partition { color: var(--accent); font-weight: 700; }
 td.c-type-dm { color: #7c6cf6; font-weight: 700; }
 td.c-type-loop { color: var(--amber, #f5a524); font-weight: 700; }
 td.c-ro1 { color: var(--amber, #f5a524); font-weight: 800; }
@@ -67,7 +67,7 @@ td.c-ro1 { color: var(--amber, #f5a524); font-weight: 800; }
   height: 38px;
   border-radius: 50%;
   border: 3px solid var(--line);
-  border-top-color: var(--red);
+  border-top-color: var(--accent);
   animation: spin .7s linear infinite;
 }
 @media (max-width: 700px) {

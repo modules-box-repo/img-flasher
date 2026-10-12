@@ -7,9 +7,16 @@
   --ink: #f7f7f4;
   --muted: #9b9da6;
   --line: #30333d;
-  --red: #FF0000;
-  --red-soft: #321b20;
+  --accent: #35c889;
+  --accent-soft: rgba(53, 200, 137, .16);
+  --accent-glow: rgba(53, 200, 137, .25);
+  --accent-glow-strong: rgba(53, 200, 137, .55);
   --green: #35c889;
+  --green-soft: rgba(53, 200, 137, .16);
+  --red: #35c889;
+  --red-soft: rgba(53, 200, 137, .16);
+  --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, .16);
 }
 
 body.light {
@@ -19,9 +26,16 @@ body.light {
   --ink: #17181c;
   --muted: #737782;
   --line: #e5e7eb;
-  --red: #FF0000;
-  --red-soft: #fff0f1;
+  --accent: #16845b;
+  --accent-soft: #eaf8f1;
+  --accent-glow: rgba(22, 132, 91, .25);
+  --accent-glow-strong: rgba(22, 132, 91, .55);
   --green: #16845b;
+  --green-soft: #eaf8f1;
+  --red: #16845b;
+  --red-soft: #eaf8f1;
+  --danger: #dc2626;
+  --danger-soft: #fff0f1;
 }
 
 .hidden, #media.hidden, #audio-fields.hidden, #advancedBox.hidden {

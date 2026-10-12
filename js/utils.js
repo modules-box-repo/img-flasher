@@ -26,7 +26,7 @@ const api = async (url, options = {}) => {
 };
 
 const message = (text, error = false) => {
-  $("#message").innerHTML = `<div class="notice">${error ? "ERROR / " : "OK / "}${text}</div>`;
+  $("#message").innerHTML = `<div class="notice ${error ? "error" : "success"}">${error ? "ERROR / " : "OK / "}${text}</div>`;
   if (!error) setTimeout(() => { $("#message").innerHTML = ""; }, 5000);
 };
 
@@ -39,12 +39,24 @@ const setRefreshing = loading => {
 };
 
 const setProgress = (barId, pctId, done, total) => {
-  const pct = total ? Math.round(done / total * 100) : 0;
-  $("#" + barId).style.width = pct + "%";
-  $("#" + pctId).textContent = pct + "%";
+  const pct = total ? Math.min(100, Math.round(done / total * 100)) : 0;
+  const bar = $("#" + barId);
+  const pctEl = $("#" + pctId);
+  if (bar) bar.style.width = pct + "%";
+  if (pctEl) pctEl.textContent = pct + "%";
 };
 
 const showProgress = (wrapId, show) => {
-  $("#" + wrapId).classList.toggle("hidden", !show);
-  if (show) setProgress(wrapId === "exProg" ? "exBar" : "flBar", wrapId === "exProg" ? "exPct" : "flPct", 0, 1);
+  const el = $("#" + wrapId);
+  if (!el) return;
+  el.classList.toggle("hidden", !show);
+  const barId = wrapId === "exProg" ? "exBar" : "flBar";
+  const pctId = wrapId === "exProg" ? "exPct" : "flPct";
+  if (show) {
+    setProgress(barId, pctId, 0, 1);
+  } else {
+    setTimeout(() => {
+      setProgress(barId, pctId, 0, 1);
+    }, 300);
+  }
 };

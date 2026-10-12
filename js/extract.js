@@ -44,7 +44,7 @@ function renderExtract() {
 }
 
 function exMsg(text, error = false) {
-  $("#exMessage").innerHTML = `<div class="notice">${error ? "ERROR / " : "OK / "}${text}</div>`;
+  $("#exMessage").innerHTML = `<div class="notice ${error ? "error" : "success"}">${error ? "ERROR / " : "OK / "}${text}</div>`;
 }
 
 function isFolderPath(p) {
@@ -63,22 +63,34 @@ function initExtract() {
       return exMsg("Output is a file but multiple partitions are selected — pick a folder or select a single partition.", true);
     const base = out.replace(/\/+$/, "");
     $("#exBtn").disabled = true;
+    $("#exMessage").innerHTML = "";
     showProgress("exProg", true);
     let done = 0;
     const total = [...state.selected].length;
+    const errors = [];
     for (const n of [...state.selected]) {
       const b = state.blocks.find(x => x.name === n);
       if (!b) { done++; setProgress("exBar", "exPct", done, total); continue; }
       const dest = folder ? `${base}/${b.partname}.img` : out;
+      $("#exMessage").innerHTML = `<div class="notice">جاري استخراج ${b.partname} (${done + 1}/${total})…</div>`;
       try {
         await api("/api/extract", { method: "POST", body: JSON.stringify({ partition: b.name, output: dest }) });
-        exMsg(`${b.partname} → ${dest}`);
       } catch (e) {
-        exMsg(`${b.partname}: ${e.message}`, true);
+        errors.push(`${b.partname}: ${e.message}`);
       }
       done++;
       setProgress("exBar", "exPct", done, total);
     }
-    $("#exBtn").disabled = false;
+    await new Promise(r => setTimeout(r, 400));
+    showProgress("exProg", false);
+    $("#exBtn").disabled = state.selected.size === 0;
+
+    if (errors.length === 0) {
+      exMsg(`تم الاستخراج بنجاح! ✓ (${total === 1 ? 'تم حفظ الملف' : 'تم حفظ ' + total + ' ملفات'})`, false);
+    } else if (errors.length < total) {
+      exMsg(`اكتمل الاستخراج مع وجود أخطاء:\n${errors.join("\n")}`, true);
+    } else {
+      exMsg(`فشل الاستخراج:\n${errors.join("\n")}`, true);
+    }
   };
 }
